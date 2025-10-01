@@ -1,0 +1,26 @@
+@model Restaurant_Management.Models.Client
+
+<form asp-controller="Clients" asp-action="Edit" method="post">
+    <input asp-for="Id" hidden="hidden">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Nombre</label>
+        <input required="required" type="text" class="form-control" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastNames" class="form-label">Apellidos</label>
+        <input required="required" type="text" class="form-control" asp-for="LastNames">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Correo</label>
+        <input required="required" type="email" class="form-control" asp-for="Email">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label">Teléfono</label>
+        <input required="required" type="number" class="form-control" asp-for="Phone">
+    </div>
+    <button type="submit" class="btn btn-outline-success">
+        Guardar cambios
+    </button>
+</form>
+
+

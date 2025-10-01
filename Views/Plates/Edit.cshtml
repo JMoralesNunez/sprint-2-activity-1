@@ -1,0 +1,29 @@
+@model Restaurant_Management.Models.Plate
+
+<form asp-controller="Plates" asp-action="Edit" method="post">
+    <input asp-for="Id" hidden="hidden">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Nombre</label>
+        <input required="required" type="text" class="form-control" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Descripción</label>
+        <textarea required="required" name="Description" class="form-control" cols="30" rows="10" asp-for="Description"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Precio</label>
+        <input required="required" type="number" class="form-control" asp-for="Price">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Category" class="form-label">Categoría</label>
+        <select asp-for="Category" class="form-control">
+            <option value="Entrada">Entrada</option>
+            <option value="Plato fuerte">Plato fuerte</option>
+            <option value="Postre">Postre</option>
+            <option value="Bebida">Bebida</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-success">
+        Guardar cambios
+    </button>
+</form>
