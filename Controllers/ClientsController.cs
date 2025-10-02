@@ -16,12 +16,8 @@ public class ClientsController : Controller
     
     public IActionResult Index()
     {
-        var vm = new ClientsViewModel
-        {
-            NewClient = new Client(),
-            Clients = _context.Clients.ToList().OrderBy(c => c.Id)
-        };
-        return View(vm);
+        var clients = _context.Clients.ToList().OrderBy(c => c.Id); 
+        return View(clients);
     }
     
     public IActionResult Details(int id)
@@ -35,19 +31,18 @@ public class ClientsController : Controller
         return View(client);
     }
     
-    public IActionResult Store(ClientsViewModel client)
+    public IActionResult Store([Bind("Name,LastNames,Email,Phone")] Client client)
     {
 
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            client.Clients = _context.Clients.ToList().OrderBy(c => c.Id);
-            return View("Index", client);
+            _context.Add(client);
+            _context.SaveChanges();
+            TempData["message"] = "Cliente agregado con éxito";
+            return RedirectToAction(nameof(Index));
         }
-        _context.Add(client.NewClient);
-        _context.SaveChanges();
-        TempData["message"] = "Cliente agregado con éxito";
-        return RedirectToAction(nameof(Index));
-        
+
+        return BadRequest();
     }
     
     /*public IActionResult Edit(int id, /*[Bind("Id,Name,LastNames,Email,Phone")]#1# Client newclient)

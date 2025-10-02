@@ -7,13 +7,57 @@
     <title>Reservation</title>
 </head>
 <body>
-<div>
-    <p>@Model.Id</p>
-    <p>@Model.Date</p>
-    <p>@Model.Hour</p>
-    <p>@Model.NumberPeople</p>
-    <p>@Model.Observations</p>
-    <p>@Model.fk_ClientId</p>
+<div class="container my-5">
+<h2 class="text-center mb-4">Detalles del reserva</h2>
+<div class="row g-4">
+
+    <!-- ID -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-info text-white">ID de reserva</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.Id</p>
+            </div>
+        </div>
+    </div>
+        
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-info text-white">Fecha de reserva</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.Date</p>
+            </div>
+        </div>
+    </div>
+        
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-info text-white">Hora de reserva</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.Hour</p>
+            </div>
+        </div>
+    </div>
+        
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-info text-white">Número de personas</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.NumberPeople</p>
+            </div>
+        </div>
+    </div>
+        
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-info text-white">ID del dueño de reserva</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.fk_ClientId</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 </div>
 </body>
 </html>

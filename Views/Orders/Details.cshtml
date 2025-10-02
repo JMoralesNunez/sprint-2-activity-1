@@ -7,12 +7,57 @@
     <title>Orders</title>
 </head>
 <body>
-<div>
-    <p>@Model.Id</p>
-    <p>@Model.OrderNumber</p>
-    <p>@Model.Date</p>
-    <p>@Model.State</p>
-    <p>@Model.fk_ClientID</p>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Detalles del pedido</h2>
+    <div class="row g-4">
+
+        <!-- ID -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">ID de pedido</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Id</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Número de pedido</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.OrderNumber</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Fecha de pedido</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Date</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Estado del pedido</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.State</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">ID del dueño del pedido</div>
+                <div class="card-body">
+                    <p class="mb-0">@(Model.fk_ClientID?.ToString() ?? "N/A")</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

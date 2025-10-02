@@ -7,12 +7,57 @@
     <title>Details</title>
 </head>
 <body>
-<div>
-    <p>@Model.Id</p>
-    <p>@Model.Name</p>
-    <p>@Model.LastNames</p>
-    <p>@Model.Shift</p>
-    <p>@Model.Experience</p>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Detalles del Mesero/a</h2>
+    <div class="row g-4">
+
+        <!-- ID -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">ID del Mesero/a</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Id</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Nombre del Mesero/a</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Name</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Apellidos del Mesero/a</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.LastNames</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Turno del Mesero/a</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Shift</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Años de experiencia del Mesero/a</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Experience</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

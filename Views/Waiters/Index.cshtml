@@ -15,14 +15,14 @@
                 <form asp-action="Store" method="post">
                     <div class="mt-4">
                         <label for="">Nombres</label>
-                        <input type="text" name="Name" class="form-control">
+                        <input type="text" name="Name" required="required" class="form-control">
                     </div>
                     <div class="mt-4">
                         <label for="">Apellidos</label>
-                        <input type="text" name="LastNames" class="form-control">
+                        <input type="text" name="LastNames" required="required" class="form-control">
                     </div>
                     <div class="mt-4">
-                        <select id="shift" name="shift" class="form-control">
+                        <select id="shift" name="shift" required="required" class="form-control">
                             <option value="" disabled selected>-- Seleccione un turno --</option>
                             <option value="Día">Día</option>
                             <option value="Noche">Noche</option>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="mt-4">
                         <label for="">Años de experiencia</label>
-                        <input type="number" name="Experience" class="form-control">
+                        <input type="number" name="Experience" required="required" class="form-control">
                     </div>
                     <hr>
                     <button class="btn btn-primary w-100">Guardar Mesero/a</button>

@@ -7,12 +7,57 @@
     <title>Plate</title>
 </head>
 <body>
-<div>
-    <p>@Model.Id</p>
-    <p>@Model.Name</p>
-    <p>@Model.Description</p>
-    <p>@Model.Price</p>
-    <p>@Model.Category</p>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Detalles del Mesero/a</h2>
+    <div class="row g-4">
+
+        <!-- ID -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">ID del Plato</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Id</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Nombre del Plato</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Name</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Descripción del Plato</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Description</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Precio del Plato</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Price</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">Categoría del Plato</div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Category</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 </html>
