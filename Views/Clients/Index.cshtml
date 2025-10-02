@@ -1,4 +1,4 @@
-@model IEnumerable<Restaurant_Management.Models.Client>
+@model Restaurant_Management.ViewModels.ClientsViewModel
 
 <!DOCTYPE html>
 
@@ -14,20 +14,24 @@
             <div class="card-body">
                 <form asp-action="Store" method="post">
                     <div class="mt-4">
-                        <label for="">Nombres</label>
-                        <input type="text" name="Name" class="form-control">
+                        <label asp-for="NewClient.Name" for="">Nombres</label>
+                        <input asp-for="NewClient.Name" type="text" class="form-control">
+                        <span asp-validation-for="NewClient.Name" class="text-danger"></span>
                     </div>
                     <div class="mt-4">
-                        <label for="">Apellidos</label>
-                        <input type="text" name="LastNames" class="form-control">
+                        <label asp-for="NewClient.LastNames" for="">Apellidos</label>
+                        <input asp-for="NewClient.LastNames" type="text" class="form-control">
+                        <span asp-validation-for="NewClient.LastNames" class="text-danger"></span>
                     </div>
                     <div class="mt-4">
-                        <label for="">Correo</label>
-                        <input type="text" name="Email" class="form-control">
+                        <label asp-for="NewClient.Email" for="">Correo</label>
+                        <input asp-for="NewClient.Email" type="text" class="form-control">
+                        <span asp-validation-for="NewClient.Email" class="text-danger"></span>
                     </div>
                     <div class="mt-4">
-                        <label for="">Teléfono</label>
-                        <input type="text" name="Phone" class="form-control">
+                        <label asp-for="NewClient.Phone" for="">Teléfono</label>
+                        <input asp-for="NewClient.Phone" type="text" class="form-control">
+                        <span asp-validation-for="NewClient.Phone" class="text-danger"></span>
                     </div>
                     <hr>
                     <button class="btn btn-primary w-100">Guardar Cliente</button>
@@ -57,7 +61,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach (var client in Model)
+                    @foreach (var client in Model.Clients)
                     {
                         <tr>
                             <th>@client.Id</th>

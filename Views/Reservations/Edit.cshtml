@@ -1,0 +1,29 @@
+@model Restaurant_Management.Models.Reservation
+
+<form asp-controller="Reservations" asp-action="Edit" method="post">
+    <input asp-for="Id" hidden="hidden">
+    <div class="mt-4">
+        <label for="" asp-for="Date">Fecha</label>
+        <input type="date" class="form-control" asp-for="Date" required="required">
+    </div>
+    <div class="mt-4">
+        <label for="" asp-for="Hour">Hora</label>
+        <input type="time" class="form-control" asp-for="Hour" required="required">
+    </div>
+    <div class="mt-4">
+        <label for="" asp-for="NumberPeople">Número de personas</label>
+        <input type="number" class="form-control" asp-for="NumberPeople" required="required">
+    </div>
+    <div class="mt-4">
+        <label for="" asp-for="Observations">Observaciones</label>
+        <textarea required="required" class="form-control" asp-for="Observations" cols="30" rows="3"></textarea>
+    </div>
+    <div class="mt-4">
+        <label for="clientId" asp-for="fk_ClientId">Cliente</label>
+        <select id="clientId" asp-for="fk_ClientId" class="form-control" asp-items="@(new SelectList(ViewBag.Clients, "Id", "Name"))" required="required">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-success">
+        Guardar cambios
+    </button>
+</form>

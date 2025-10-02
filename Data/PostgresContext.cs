@@ -13,4 +13,5 @@ public class PostgresContext : DbContext
     public DbSet<Waiter> Waiters { get; set; }
     public DbSet<Plate> Plates { get; set; } 
     public DbSet<Order> Orders { get; set; } 
+    public DbSet<Reservation> Reservations { get; set; } 
 }

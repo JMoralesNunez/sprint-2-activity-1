@@ -6,10 +6,10 @@ public class Order
     
     public int OrderNumber { get; set; }
     
-    public DateTime Date { get; set; }
+    public DateOnly Date { get; set; }
     
     public string State { get; set; }
     
-    public int fk_ClientID { get; set; }
+    public int? fk_ClientID { get; set; }
     
 }

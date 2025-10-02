@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Restaurant_Management.Data;
 using Restaurant_Management.Models;
+using Restaurant_Management.ViewModels;
 
 namespace Restaurant_Management.Controllers;
 
@@ -15,9 +16,12 @@ public class ClientsController : Controller
     
     public IActionResult Index()
     {
-        // ViewModel
-        var clients = _context.Clients.ToList().OrderBy(c => c.Id); 
-        return View(clients);
+        var vm = new ClientsViewModel
+        {
+            NewClient = new Client(),
+            Clients = _context.Clients.ToList().OrderBy(c => c.Id)
+        };
+        return View(vm);
     }
     
     public IActionResult Details(int id)
@@ -31,21 +35,22 @@ public class ClientsController : Controller
         return View(client);
     }
     
-    public IActionResult Store([Bind("Name,LastNames,Email,Phone")] Client client)
+    public IActionResult Store(ClientsViewModel client)
     {
 
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            _context.Add(client);
-            _context.SaveChanges();
-            TempData["message"] = "Cliente agregado con éxito";
-            return RedirectToAction(nameof(Index));
+            client.Clients = _context.Clients.ToList().OrderBy(c => c.Id);
+            return View("Index", client);
         }
-
-        return BadRequest();
+        _context.Add(client.NewClient);
+        _context.SaveChanges();
+        TempData["message"] = "Cliente agregado con éxito";
+        return RedirectToAction(nameof(Index));
+        
     }
     
-    public IActionResult Edit(int id, [Bind("Id,Name,LastNames,Email,Phone")] Client newclient)
+    /*public IActionResult Edit(int id, /*[Bind("Id,Name,LastNames,Email,Phone")]#1# Client newclient)
     {
         
         var client = _context.Clients.Find(id);
@@ -64,9 +69,31 @@ public class ClientsController : Controller
             TempData["message"] = "El usuario ha sido editado";
         }
         return RedirectToAction(nameof(Index));
-    }       
+    }      */ 
 
-    
+    public IActionResult Edit(Client newclient)
+    {
+        if (!ModelState.IsValid)
+        {
+            // Volvemos a la vista con los errores y los datos introducidos
+            return View(newclient);
+        }
+
+        var client = _context.Clients.Find(newclient.Id);
+        if (client == null)
+        {
+            return NotFound();
+        }
+
+        client.Name = newclient.Name;
+        client.LastNames = newclient.LastNames;
+        client.Email = newclient.Email;
+        client.Phone = newclient.Phone;
+
+        _context.SaveChanges();
+        TempData["message"] = "El usuario ha sido editado";
+        return RedirectToAction(nameof(Index));
+    }
 
     [HttpGet]
     public IActionResult Edit(int id)

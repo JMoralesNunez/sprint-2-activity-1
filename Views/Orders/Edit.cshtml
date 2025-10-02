@@ -1,0 +1,29 @@
+@model Restaurant_Management.Models.Order
+
+<form asp-controller="Orders" asp-action="Edit" method="post">
+    <input asp-for="Id" hidden="hidden">
+    <div class="mb-3">
+        <label asp-for="OrderNumber" class="form-label">Número de Orden</label>
+        <input required="required" type="text" class="form-control" asp-for="OrderNumber">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Date" class="form-label">Fecha</label>
+        <input required="required" type="date" class="form-control" asp-for="Date">
+    </div>
+    <div class="mb-3">
+        <label asp-for="State" class="form-label">Estado del pedido</label>
+        <select asp-for="State" class="form-control">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Servido">Servido</option>
+            <option value="Cancelado">Cancelado</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="fk_ClientID" class="form-label">Cliente relacionado</label>
+        <select asp-for="fk_ClientID" class="form-select" asp-items="@(new SelectList(ViewBag.Clients, "Id", "Name"))">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-success">
+        Guardar cambios
+    </button>
+</form>

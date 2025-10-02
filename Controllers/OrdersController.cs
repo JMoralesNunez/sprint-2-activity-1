@@ -36,7 +36,7 @@ public class OrdersController : Controller
         return View(order);
     }
     
-    public IActionResult Store([Bind("OrderNumber,Date,State,ClientId")] Order order)
+    public IActionResult Store([Bind("OrderNumber,Date,State,fk_ClientID")] Order order)
     {
 
         if (ModelState.IsValid)
@@ -50,9 +50,8 @@ public class OrdersController : Controller
         return BadRequest();
     }
     
-    public IActionResult Edit(int id, [Bind("Id,OrderNumber,Date,State,ClientId")] Order NewOrder)
+    public IActionResult Edit(int id, [Bind("Id,OrderNumber,Date,State,fk_ClientID")] Order NewOrder)
     {
-        
         var order = _context.Orders.Find(id);
         if (order == null)
         {
@@ -60,7 +59,7 @@ public class OrdersController : Controller
         }
     
         if (ModelState.IsValid)
-        {
+        {   
             order.OrderNumber = NewOrder.OrderNumber;
             order.Date = NewOrder.Date;
             order.State = NewOrder.State;
@@ -76,6 +75,8 @@ public class OrdersController : Controller
     [HttpGet]
     public IActionResult Edit(int id)
     {
+        ViewBag.Clients = _context.Clients.ToList();
+        
         var order = _context.Orders.Find(id);
         if (order == null)
         {

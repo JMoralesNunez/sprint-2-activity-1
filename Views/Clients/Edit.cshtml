@@ -1,22 +1,26 @@
 @model Restaurant_Management.Models.Client
 
-<form asp-controller="Clients" asp-action="Edit" method="post">
+<form asp-controller="Clients" asp-action="Edit" method="post" class="needs-validation" novalidate>
     <input asp-for="Id" hidden="hidden">
     <div class="mb-3">
         <label asp-for="Name" class="form-label">Nombre</label>
         <input required="required" type="text" class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="LastNames" class="form-label">Apellidos</label>
         <input required="required" type="text" class="form-control" asp-for="LastNames">
+        <span asp-validation-for="LastNames" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="Email" class="form-label">Correo</label>
         <input required="required" type="email" class="form-control" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="Phone" class="form-label">Teléfono</label>
         <input required="required" type="number" class="form-control" asp-for="Phone">
+        <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-outline-success">
         Guardar cambios

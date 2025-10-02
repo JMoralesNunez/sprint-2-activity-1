@@ -14,23 +14,30 @@
             <div class="card-body">
                 <form asp-action="Store" method="post">
                     <div class="mt-4">
-                        <label for="">Nombres</label>
-                        <input type="text" name="Name" class="form-control">
+                        <label for="">Número de orden</label>
+                        <input type="text" name="OrderNumber" class="form-control">
                     </div>
                     <div class="mt-4">
-                        <label for="">Apellidos</label>
-                        <input type="text" name="LastNames" class="form-control">
+                        <label for="">Fecha</label>
+                        <input type="date" name="Date" class="form-control">
                     </div>
                     <div class="mt-4">
-                        <label for="">Correo</label>
-                        <input type="text" name="Email" class="form-control">
+                        <label for="state">Estado del pedido</label>
+                        <select id="state" name="State" class="form-control">
+                            <option value="" disabled selected>-- Seleccione un estado de pedido --</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Servido">Servido</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
                     </div>
                     <div class="mt-4">
-                        <label for="">Teléfono</label>
-                        <input type="text" name="Phone" class="form-control">
+                        <label for="clientId">Cliente</label>
+                        <select id="clientId" name="fk_ClientID" class="form-control" asp-items="@(new SelectList(Model.Clients, "Id", "Name"))">
+                            <option value="" disabled selected>-- Seleccione el cliente --</option>
+                        </select>
                     </div>
                     <hr>
-                    <button class="btn btn-primary w-100">Guardar Cliente</button>
+                    <button class="btn btn-primary w-100">Guardar Pedido</button>
                 </form>
             </div>
         </div>
@@ -66,10 +73,10 @@
                             <th>@order.State</th>
                             <th>@order.fk_ClientID</th>
                             <th>
-                                <a asp-controller="Clients" asp-action="Details" asp-route-id="@order.Id"
+                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id"
                                    class="btn btn-info">Details</a>
-                                <a asp-controller="Clients" asp-action="Edit" asp-route-id="@order.Id" class="btn btn-warning">Edit</a>
-                                <a asp-controller="Clients" asp-action="Destroy" asp-route-id="@order.Id" class="btn btn-danger">Delete</a>
+                                <a asp-controller="Orders" asp-action="Edit" asp-route-id="@order.Id" class="btn btn-warning">Edit</a>
+                                <a asp-controller="Orders" asp-action="Destroy" asp-route-id="@order.Id" class="btn btn-danger">Delete</a>
                             </th>
                         </tr>
                     }
