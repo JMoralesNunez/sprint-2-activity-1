@@ -8,56 +8,70 @@
 </head>
 <body>
 <div class="container my-5">
-<h2 class="text-center mb-4">Detalles del reserva</h2>
-<div class="row g-4">
+    <h2 class="text-center mb-4 fw-bold text-primary table_title">Detalles de la Reserva</h2>
+    <div class="row g-4">
 
-    <!-- ID -->
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-info text-white">ID de reserva</div>
-            <div class="card-body">
-                <p class="mb-0">@Model.Id</p>
+        <!-- ID -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-header bg-dark text-white fw-bold">ID de la Reserva</div>
+                <div class="card-body">
+                    <p class="mb-0 fs-5">@Model.Id</p>
+                </div>
             </div>
         </div>
-    </div>
-        
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-info text-white">Fecha de reserva</div>
-            <div class="card-body">
-                <p class="mb-0">@Model.Date</p>
+
+        <!-- Fecha -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-header bg-dark text-white fw-bold">Fecha de la Reserva</div>
+                <div class="card-body">
+                    <p class="mb-0 fs-5">@Model.Date.ToShortDateString()</p>
+                </div>
             </div>
         </div>
-    </div>
-        
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-info text-white">Hora de reserva</div>
-            <div class="card-body">
-                <p class="mb-0">@Model.Hour</p>
+
+        <!-- Hora -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-header bg-dark text-white fw-bold">Hora de la Reserva</div>
+                <div class="card-body">
+                    <p class="mb-0 fs-5">@Model.Hour</p>
+                </div>
             </div>
         </div>
-    </div>
-        
-    <div class="col-md-6">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-info text-white">Número de personas</div>
-            <div class="card-body">
-                <p class="mb-0">@Model.NumberPeople</p>
+
+        <!-- Número de personas -->
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-header bg-dark text-white fw-bold">Número de Personas</div>
+                <div class="card-body">
+                    <p class="mb-0 fs-5">@Model.NumberPeople</p>
+                </div>
             </div>
         </div>
-    </div>
-        
-    <div class="col-md-6">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-info text-white">ID del dueño de reserva</div>
-            <div class="card-body">
-                <p class="mb-0">@Model.fk_ClientId</p>
+
+        <!-- Cliente -->
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-header bg-dark text-white fw-bold">Cliente</div>
+                <div class="card-body">
+                    <p class="mb-0 fs-5">
+                        @(Model.fk_ClientId != null ? Model.fk_ClientId.ToString() : "N/A")
+                    </p>
+                </div>
             </div>
         </div>
+
     </div>
 
+    <!-- Botón volver -->
+    <div class="text-center mt-4">
+        <a class="btn btn-outline-info px-4" asp-area="" asp-controller="Reservations" asp-action="Index">
+            ← Volver
+        </a>
+    </div>
 </div>
-</div>
+ 
 </body>
 </html>

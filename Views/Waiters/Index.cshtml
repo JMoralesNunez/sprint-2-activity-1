@@ -8,80 +8,94 @@
 </head>
 <body>
 <div>
-    <div class="row">
+    <h1 class="table_title">Meseros</h1>
+    <div class="row g-4">
+    <!-- Formulario -->
     <div class="col-md-3">
-        <div class="card">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white fw-bold">
+                Nuevo Mesero/a
+            </div>
             <div class="card-body">
                 <form asp-action="Store" method="post">
-                    <div class="mt-4">
-                        <label for="">Nombres</label>
-                        <input type="text" name="Name" required="required" class="form-control">
+                    <div class="mb-3">
+                        <label class="form-label">Nombres</label>
+                        <input type="text" name="Name" required="required" class="form-control" placeholder="Ingrese nombres">
                     </div>
-                    <div class="mt-4">
-                        <label for="">Apellidos</label>
-                        <input type="text" name="LastNames" required="required" class="form-control">
+                    <div class="mb-3">
+                        <label class="form-label">Apellidos</label>
+                        <input type="text" name="LastNames" required="required" class="form-control" placeholder="Ingrese apellidos">
                     </div>
-                    <div class="mt-4">
-                        <select id="shift" name="shift" required="required" class="form-control">
+                    <div class="mb-3">
+                        <label class="form-label">Turno</label>
+                        <select id="shift" name="shift" required="required" class="form-select">
                             <option value="" disabled selected>-- Seleccione un turno --</option>
                             <option value="Día">Día</option>
                             <option value="Noche">Noche</option>
                         </select>
                     </div>
-                    <div class="mt-4">
-                        <label for="">Años de experiencia</label>
-                        <input type="number" name="Experience" required="required" class="form-control">
+                    <div class="mb-3">
+                        <label class="form-label">Años de experiencia</label>
+                        <input type="number" name="Experience" required="required" class="form-control" placeholder="Ej: 3">
                     </div>
-                    <hr>
                     <button class="btn btn-primary w-100">Guardar Mesero/a</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- Tabla -->
     <div class="col-md-9">
-        <div class="card">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white fw-bold">
+                Lista de Meseros/as
+            </div>
             <div class="card-body">
                 @if (TempData["message"] != null)
                 {
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         @TempData["message"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 }
 
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NAMES</th>
-                        <th>LASTNAMES</th>
-                        <th>SHIFT</th>
-                        <th>EXPERIENCE</th>
-                        <th>ACTIONS</th>
-                    </tr>
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Turno</th>
+                            <th>Experiencia</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach (var waiter in Model)
-                    {
-                        <tr>
-                            <th>@waiter.Id</th>
-                            <th>@waiter.Name</th>
-                            <th>@waiter.LastNames</th>
-                            <th>@waiter.Shift</th>
-                            <th>@waiter.Experience</th>
-                            <th>
-                                <a asp-controller="Waiters" asp-action="Details" asp-route-id="@waiter.Id"
-                                   class="btn btn-info">Details</a>
-                                <a asp-controller="Waiters" asp-action="Edit" asp-route-id="@waiter.Id" class="btn btn-warning">Edit</a>
-                                <a asp-controller="Waiters" asp-action="Destroy" asp-route-id="@waiter.Id" class="btn btn-danger">Delete</a>
-                            </th>
-                        </tr>
-                    }
+                        @foreach (var waiter in Model)
+                        {
+                            <tr>
+                                <td>@waiter.Id</td>
+                                <td>@waiter.Name</td>
+                                <td>@waiter.LastNames</td>
+                                <td>@waiter.Shift</td>
+                                <td>@waiter.Experience</td>
+                                <td class="text-center">
+                                    <a asp-controller="Waiters" asp-action="Details" asp-route-id="@waiter.Id"
+                                       class="btn btn-sm btn-info text-white">Detalles</a>
+                                    <a asp-controller="Waiters" asp-action="Edit" asp-route-id="@waiter.Id"
+                                       class="btn btn-sm btn-warning text-white">Editar</a>
+                                    <a asp-controller="Waiters" asp-action="Destroy" asp-route-id="@waiter.Id"
+                                       class="btn btn-sm btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
 </div>
 </body>
 </html>

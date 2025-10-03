@@ -1,29 +1,57 @@
 @model Restaurant_Management.Models.Reservation
 
-<form asp-controller="Reservations" asp-action="Edit" method="post">
-    <input asp-for="Id" hidden="hidden">
-    <div class="mt-4">
-        <label for="" asp-for="Date">Fecha</label>
-        <input type="date" class="form-control" asp-for="Date" required="required">
+<div class="container my-5">
+    <h2 class="text-center mb-4 fw-bold text-primary">Editar Reserva</h2>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-controller="Reservations" asp-action="Edit" method="post" class="needs-validation" novalidate>
+                <input asp-for="Id" hidden />
+
+                <!-- Fecha -->
+                <div class="mb-3">
+                    <label asp-for="Date" class="form-label fw-bold">Fecha</label>
+                    <input type="date" class="form-control" asp-for="Date" required />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <!-- Hora -->
+                <div class="mb-3">
+                    <label asp-for="Hour" class="form-label fw-bold">Hora</label>
+                    <input type="time" class="form-control" asp-for="Hour" required />
+                    <span asp-validation-for="Hour" class="text-danger"></span>
+                </div>
+
+                <!-- Número de personas -->
+                <div class="mb-3">
+                    <label asp-for="NumberPeople" class="form-label fw-bold">Número de personas</label>
+                    <input type="number" class="form-control" asp-for="NumberPeople" required />
+                    <span asp-validation-for="NumberPeople" class="text-danger"></span>
+                </div>
+
+                <!-- Observaciones -->
+                <div class="mb-3">
+                    <label asp-for="Observations" class="form-label fw-bold">Observaciones</label>
+                    <textarea class="form-control" asp-for="Observations" rows="3"></textarea>
+                    <span asp-validation-for="Observations" class="text-danger"></span>
+                </div>
+
+                <!-- Cliente relacionado -->
+                <div class="mb-3">
+                    <label asp-for="fk_ClientId" class="form-label fw-bold">Cliente</label>
+                    <select asp-for="fk_ClientId" class="form-select"
+                            asp-items="@(new SelectList(ViewBag.Clients, "Id", "Name"))" required>
+                        <option value="">-- Seleccione un cliente --</option>
+                    </select>
+                    <span asp-validation-for="fk_ClientId" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success px-4">Guardar cambios</button>
+                    <a asp-controller="Reservations" asp-action="Index" class="btn btn-danger px-4">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mt-4">
-        <label for="" asp-for="Hour">Hora</label>
-        <input type="time" class="form-control" asp-for="Hour" required="required">
-    </div>
-    <div class="mt-4">
-        <label for="" asp-for="NumberPeople">Número de personas</label>
-        <input type="number" class="form-control" asp-for="NumberPeople" required="required">
-    </div>
-    <div class="mt-4">
-        <label for="" asp-for="Observations">Observaciones</label>
-        <textarea class="form-control" asp-for="Observations" cols="30" rows="3"></textarea>
-    </div>
-    <div class="mt-4">
-        <label for="clientId" asp-for="fk_ClientId">Cliente</label>
-        <select id="clientId" asp-for="fk_ClientId" class="form-control" asp-items="@(new SelectList(ViewBag.Clients, "Id", "Name"))" required="required">
-        </select>
-    </div>
-    <button type="submit" class="btn btn-outline-success">
-        Guardar cambios
-    </button>
-</form>
+</div>

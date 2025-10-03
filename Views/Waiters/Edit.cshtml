@@ -1,27 +1,50 @@
 @model Restaurant_Management.Models.Waiter
 
-<form asp-controller="Waiters" asp-action="Edit" method="post">
-    <input asp-for="Id" hidden="hidden">
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label">Nombre</label>
-        <input required="required" type="text" class="form-control" asp-for="Name">
+<div class="container my-5">
+    <h2 class="text-center mb-4 fw-bold text-primary">Editar Mesero/a</h2>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-controller="Waiters" asp-action="Edit" method="post" class="needs-validation" novalidate>
+                <input asp-for="Id" hidden />
+
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">Nombre</label>
+                    <input type="text" asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Apellidos -->
+                <div class="mb-3">
+                    <label asp-for="LastNames" class="form-label fw-bold">Apellidos</label>
+                    <input type="text" asp-for="LastNames" class="form-control" required />
+                    <span asp-validation-for="LastNames" class="text-danger"></span>
+                </div>
+
+                <!-- Turno -->
+                <div class="mb-3">
+                    <label asp-for="Shift" class="form-label fw-bold">Turno</label>
+                    <select asp-for="Shift" class="form-select" required>
+                        <option value="Día">Día</option>
+                        <option value="Noche">Noche</option>
+                    </select>
+                    <span asp-validation-for="Shift" class="text-danger"></span>
+                </div>
+
+                <!-- Experiencia -->
+                <div class="mb-3">
+                    <label asp-for="Experience" class="form-label fw-bold">Años de experiencia</label>
+                    <input type="number" asp-for="Experience" class="form-control" required />
+                    <span asp-validation-for="Experience" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success px-4">Guardar cambios</button>
+                    <a asp-controller="Waiters" asp-action="Index" class="btn btn-danger px-4">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label asp-for="LastNames" class="form-label">Apellidos</label>
-        <input required="required" type="text" class="form-control" asp-for="LastNames">
-    </div>
-    <div class="mb-3">
-        <label asp-for="Shift" class="form-label">Turno</label>
-        <select asp-for="Shift" class="form-control">
-            <option value="Día">Día</option>
-            <option value="Noche">Noche</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Experience" class="form-label">Años de experiencia</label>
-        <input required="required" type="number" class="form-control" asp-for="Experience">
-    </div>
-    <button type="submit" class="btn btn-outline-success">
-        Guardar cambios
-    </button>
-</form>
+</div>

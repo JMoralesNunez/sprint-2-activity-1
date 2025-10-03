@@ -1,29 +1,52 @@
 @model Restaurant_Management.Models.Plate
 
-<form asp-controller="Plates" asp-action="Edit" method="post">
-    <input asp-for="Id" hidden="hidden">
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label">Nombre</label>
-        <input required="required" type="text" class="form-control" asp-for="Name">
+<div class="container my-5">
+    <h2 class="text-center mb-4 fw-bold text-primary">Editar Plato</h2>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-controller="Plates" asp-action="Edit" method="post" class="needs-validation" novalidate>
+                <input asp-for="Id" hidden />
+
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">Nombre</label>
+                    <input type="text" asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Descripción -->
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-bold">Descripción</label>
+                    <textarea asp-for="Description" class="form-control" rows="5" required></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <!-- Precio -->
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label fw-bold">Precio</label>
+                    <input type="number" asp-for="Price" class="form-control" required />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <!-- Categoría -->
+                <div class="mb-3">
+                    <label asp-for="Category" class="form-label fw-bold">Categoría</label>
+                    <select asp-for="Category" class="form-select" required>
+                        <option value="Entrada">Entrada</option>
+                        <option value="Plato fuerte">Plato fuerte</option>
+                        <option value="Postre">Postre</option>
+                        <option value="Bebida">Bebida</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success px-4">Guardar cambios</button>
+                    <a asp-controller="Plates" asp-action="Index" class="btn btn-danger px-4">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label asp-for="Description" class="form-label">Descripción</label>
-        <textarea required="required" name="Description" class="form-control" cols="30" rows="10" asp-for="Description"></textarea>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Price" class="form-label">Precio</label>
-        <input required="required" type="number" class="form-control" asp-for="Price">
-    </div>
-    <div class="mb-3">
-        <label asp-for="Category" class="form-label">Categoría</label>
-        <select asp-for="Category" class="form-control">
-            <option value="Entrada">Entrada</option>
-            <option value="Plato fuerte">Plato fuerte</option>
-            <option value="Postre">Postre</option>
-            <option value="Bebida">Bebida</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-outline-success">
-        Guardar cambios
-    </button>
-</form>
+</div>

@@ -8,83 +8,173 @@
 </head>
 <body>
 <div>
-    <div class="row">
+    <h1 class="table_title">Reservas</h1>
+    @*<div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Store" method="post">
+                        <div class="mt-4">
+                            <label for="">Fecha</label>
+                            <input type="date" name="Date" class="form-control" required="required">
+                        </div>
+                        <div class="mt-4">
+                            <label for="">Hora</label>
+                            <input type="time" name="Hour" class="form-control" required="required">
+                        </div>
+                        <div class="mt-4">
+                            <label for="">Número de personas</label>
+                            <input type="number" name="NumberPeople" class="form-control" required="required">
+                        </div>
+                        <div class="mt-4">
+                            <label for="">Observaciones</label>
+                            <textarea name="Observations" class="form-control" cols="30" rows="3"></textarea>
+                        </div>
+                        <div class="mt-4">
+                            <label for="clientId">Cliente</label>
+                            <select id="clientId" name="fk_ClientID" class="form-control" asp-items="@(new SelectList(Model.Clients, "Id", "Name"))" required="required">
+                                <option value="" disabled selected>-- Seleccione el cliente --</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <button class="btn btn-primary w-100">Guardar Reserva</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    @if (TempData["message"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["message"]
+                        </div>
+                    }
+
+                    <table class="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>DATE</th>
+                            <th>HOUR</th>
+                            <th># OF PEOPLE</th>
+                            <th>CLIENT ID</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var reservation in Model.Reservations)
+                        {
+                            <tr>
+                                <th>@reservation.Id</th>
+                                <th>@reservation.Date</th>
+                                <th>@reservation.Hour</th>
+                                <th>@reservation.NumberPeople</th>
+                                <th>@reservation.fk_ClientId</th>
+                                <th>
+                                    <a asp-controller="Reservations" asp-action="Details" asp-route-id="@reservation.Id"
+                                       class="btn btn-info">Details</a>
+                                    <a asp-controller="Reservations" asp-action="Edit" asp-route-id="@reservation.Id" class="btn btn-warning">Edit</a>
+                                    <a asp-controller="Reservations" asp-action="Destroy" asp-route-id="@reservation.Id" class="btn btn-danger">Delete</a>
+                                </th>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <div class="row g-4">
+    <!-- Formulario -->
     <div class="col-md-3">
-        <div class="card">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white fw-bold">
+                Nueva Reserva
+            </div>
             <div class="card-body">
                 <form asp-action="Store" method="post">
-                    <div class="mt-4">
-                        <label for="">Fecha</label>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha</label>
                         <input type="date" name="Date" class="form-control" required="required">
                     </div>
-                    <div class="mt-4">
-                        <label for="">Hora</label>
+                    <div class="mb-3">
+                        <label class="form-label">Hora</label>
                         <input type="time" name="Hour" class="form-control" required="required">
                     </div>
-                    <div class="mt-4">
-                        <label for="">Número de personas</label>
-                        <input type="number" name="NumberPeople" class="form-control" required="required">
+                    <div class="mb-3">
+                        <label class="form-label">Número de personas</label>
+                        <input type="number" name="NumberPeople" class="form-control" required="required" placeholder="Ej: 4">
                     </div>
-                    <div class="mt-4">
-                        <label for="">Observaciones</label>
-                        <textarea name="Observations" class="form-control" cols="30" rows="3"></textarea>
+                    <div class="mb-3">
+                        <label class="form-label">Observaciones</label>
+                        <textarea name="Observations" class="form-control" cols="30" rows="3" placeholder="Ej: Mesa cerca de la ventana"></textarea>
                     </div>
-                    <div class="mt-4">
-                        <label for="clientId">Cliente</label>
-                        <select id="clientId" name="fk_ClientID" class="form-control" asp-items="@(new SelectList(Model.Clients, "Id", "Name"))" required="required">
+                    <div class="mb-3">
+                        <label for="clientId" class="form-label">Cliente</label>
+                        <select id="clientId" name="fk_ClientID" class="form-select" asp-items="@(new SelectList(Model.Clients, "Id", "Name"))" required="required">
                             <option value="" disabled selected>-- Seleccione el cliente --</option>
                         </select>
                     </div>
-                    <hr>
                     <button class="btn btn-primary w-100">Guardar Reserva</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- Tabla -->
     <div class="col-md-9">
-        <div class="card">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white fw-bold">
+                Lista de Reservas
+            </div>
             <div class="card-body">
                 @if (TempData["message"] != null)
                 {
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         @TempData["message"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 }
 
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>DATE</th>
-                        <th>HOUR</th>
-                        <th># OF PEOPLE</th>
-                        <th>CLIENT ID</th>
-                        <th>ACTIONS</th>
-                    </tr>
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th># Personas</th>
+                            <th>Cliente</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach (var reservation in Model.Reservations)
-                    {
-                        <tr>
-                            <th>@reservation.Id</th>
-                            <th>@reservation.Date</th>
-                            <th>@reservation.Hour</th>
-                            <th>@reservation.NumberPeople</th>
-                            <th>@reservation.fk_ClientId</th>
-                            <th>
-                                <a asp-controller="Reservations" asp-action="Details" asp-route-id="@reservation.Id"
-                                   class="btn btn-info">Details</a>
-                                <a asp-controller="Reservations" asp-action="Edit" asp-route-id="@reservation.Id" class="btn btn-warning">Edit</a>
-                                <a asp-controller="Reservations" asp-action="Destroy" asp-route-id="@reservation.Id" class="btn btn-danger">Delete</a>
-                            </th>
-                        </tr>
-                    }
+                        @foreach (var reservation in Model.Reservations)
+                        {
+                            <tr>
+                                <td>@reservation.Id</td>
+                                <td>@reservation.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@reservation.Hour</td>
+                                <td>@reservation.NumberPeople</td>
+                                <td>@reservation.fk_ClientId</td>
+                                <td class="text-center">
+                                    <a asp-controller="Reservations" asp-action="Details" asp-route-id="@reservation.Id"
+                                       class="btn btn-sm btn-info text-white">Detalles</a>
+                                    <a asp-controller="Reservations" asp-action="Edit" asp-route-id="@reservation.Id"
+                                       class="btn btn-sm btn-warning text-white">Editar</a>
+                                    <a asp-controller="Reservations" asp-action="Destroy" asp-route-id="@reservation.Id"
+                                       class="btn btn-sm btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
 </div>
 </body>
 </html>

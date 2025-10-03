@@ -4,82 +4,94 @@
 
 <html>
 <head>
-    <title>Clients</title>
+    <title>Orders</title>
 </head>
 <body>
 <div>
-    <div class="row">
+    <h1 class="table_title">Pedidos</h1>
+    <div class="row g-4">
+    <!-- Formulario -->
     <div class="col-md-3">
-        <div class="card">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white fw-bold">
+                Nuevo Pedido
+            </div>
             <div class="card-body">
                 <form asp-action="Store" method="post">
-                    <div class="mt-4">
-                        <label for="">Número de orden</label>
-                        <input type="text" name="OrderNumber" required="required" class="form-control">
+                    <div class="mb-3">
+                        <label class="form-label">Número de orden</label>
+                        <input type="text" name="OrderNumber" required="required" class="form-control" placeholder="Ej: OR-1024">
                     </div>
-                    <div class="mt-4">
-                        <label for="">Fecha</label>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha</label>
                         <input type="date" name="Date" required="required" class="form-control">
                     </div>
-                    <div class="mt-4">
-                        <label for="state">Estado del pedido</label>
-                        <select id="state" name="State" required="required" class="form-control">
+                    <div class="mb-3">
+                        <label class="form-label">Estado del pedido</label>
+                        <select id="state" name="State" required="required" class="form-select">
                             <option value="" disabled selected>-- Seleccione un estado de pedido --</option>
                             <option value="Pendiente">Pendiente</option>
                             <option value="Servido">Servido</option>
                             <option value="Cancelado">Cancelado</option>
                         </select>
                     </div>
-                    <div class="mt-4">
-                        <label for="clientId">Cliente</label>
-                        <select id="clientId" name="fk_ClientID" required="required" class="form-control" asp-items="@(new SelectList(Model.Clients, "Id", "Name"))">
+                    <div class="mb-3">
+                        <label for="clientId" class="form-label">Cliente</label>
+                        <select id="clientId" name="fk_ClientID" required="required" class="form-select" asp-items="@(new SelectList(Model.Clients, "Id", "Name"))">
                             <option value="" disabled selected>-- Seleccione el cliente --</option>
                         </select>
                     </div>
-                    <hr>
                     <button class="btn btn-primary w-100">Guardar Pedido</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- Tabla -->
     <div class="col-md-9">
-        <div class="card">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white fw-bold">
+                Lista de Pedidos
+            </div>
             <div class="card-body">
                 @if (TempData["message"] != null)
                 {
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         @TempData["message"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 }
 
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>ORDER NUMBER</th>
-                        <th>DATE</th>
-                        <th>STATE</th>
-                        <th>CLIENT ID</th>
-                        <th>ACTIONS</th>
-                    </tr>
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Número de Orden</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Cliente</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach (var order in Model.Orders)
-                    {
-                        <tr>
-                            <th>@order.Id</th>
-                            <th>@order.OrderNumber</th>
-                            <th>@order.Date</th>
-                            <th>@order.State</th>
-                            <th>@(order.fk_ClientID?.ToString() ?? "N/A")</th>
-                            <th>
-                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id"
-                                   class="btn btn-info">Details</a>
-                                <a asp-controller="Orders" asp-action="Edit" asp-route-id="@order.Id" class="btn btn-warning">Edit</a>
-                                <a asp-controller="Orders" asp-action="Destroy" asp-route-id="@order.Id" class="btn btn-danger">Delete</a>
-                            </th>
-                        </tr>
-                    }
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <td>@order.Id</td>
+                                <td>@order.OrderNumber</td>
+                                <td>@order.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@order.State</td>
+                                <td>@(order.fk_ClientID?.ToString() ?? "N/A")</td>
+                                <td class="text-center">
+                                    <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id"
+                                       class="btn btn-sm btn-info text-white">Detalles</a>
+                                    <a asp-controller="Orders" asp-action="Edit" asp-route-id="@order.Id"
+                                       class="btn btn-sm btn-warning text-white">Editar</a>
+                                    <a asp-controller="Orders" asp-action="Destroy" asp-route-id="@order.Id"
+                                       class="btn btn-sm btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

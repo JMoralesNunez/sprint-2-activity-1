@@ -2,60 +2,68 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container py-5">
-    <h1 class="mb-4 text-center">Panel de Administración</h1>
-    <div class="row g-4">
+<div class="container">
+  <div class="hero d-flex flex-column">
+      <h1 class="mb-4 text-center main_title">Panel de Administración</h1>
+      <div class="row g-4 main_cards">
 
-      <!-- Clientes -->
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">👥 Clientes</h5>
-            <p class="card-text">Gestión de clientes registrados.</p>
+          <!-- Clientes -->
+          <div class="col-md-4">
+              <div class="card shadow-sm h-100">
+                  <div class="card-body text-center">
+                      <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="Index">
+                          <h5 class="card-title main_links">Clientes</h5>
+                      </a>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Meseros -->
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">🧑‍🍳 Meseros</h5>
-            <p class="card-text">Control de personal y turnos.</p>
+          <!-- Meseros -->
+          <div class="col-md-4">
+              <div class="card shadow-sm h-100">
+                  <div class="card-body text-center">
+                      <a class="nav-link text-dark" asp-area="" asp-controller="Waiters" asp-action="Index">
+                          <h5 class="card-title main_links">Meseros</h5>
+                      </a>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Platos -->
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">🍽️ Platos</h5>
-            <p class="card-text">Administrar menú y precios.</p>
+          <!-- Platos -->
+          <div class="col-md-4">
+              <div class="card shadow-sm h-100">
+                  <div class="card-body text-center">
+                      <a class="nav-link text-dark" asp-area="" asp-controller="Plates" asp-action="Index">
+                          <h5 class="card-title main_links">Platos</h5>
+                      </a>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Pedidos -->
-      <div class="col-md-6">
-        <div class="card shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">📝 Pedidos</h5>
-            <p class="card-text">Seguimiento y control de pedidos.</p>
+          <!-- Pedidos -->
+          <div class="col-md-6">
+              <div class="card shadow-sm h-100">
+                  <div class="card-body text-center">
+                      <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">
+                          <h5 class="card-title main_links">Pedidos</h5>
+                      </a>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Reservas -->
-      <div class="col-md-6">
-        <div class="card shadow-sm h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title">📅 Reservas</h5>
-            <p class="card-text">Gestión de reservas de mesas.</p>
+          <!-- Reservas -->
+          <div class="col-md-6">
+              <div class="card shadow-sm h-100">
+                  <div class="card-body text-center">
+                      <a class="nav-link text-dark" asp-area="" asp-controller="Reservations" asp-action="Index">
+                          <h5 class="card-title main_links">Reservas</h5>
+                      </a>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
 
-    </div>
+      </div>
   </div>
+  
+</div>
 

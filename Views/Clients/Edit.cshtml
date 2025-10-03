@@ -1,30 +1,50 @@
 @model Restaurant_Management.Models.Client
 
-<form asp-controller="Clients" asp-action="Edit" method="post" class="needs-validation" novalidate>
-    <input asp-for="Id" hidden="hidden">
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label">Nombre</label>
-        <input required="required" type="text" class="form-control" asp-for="Name">
-        <span asp-validation-for="Name" class="text-danger"></span>
+<div class="container my-5">
+    <h2 class="text-center mb-4 fw-bold text-primary table_title">Editar Cliente</h2>
+    
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-controller="Clients" asp-action="Edit" method="post" class="needs-validation" novalidate>
+                <input asp-for="Id" hidden />
+
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">Nombre</label>
+                    <input type="text" asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Apellidos -->
+                <div class="mb-3">
+                    <label asp-for="LastNames" class="form-label fw-bold">Apellidos</label>
+                    <input type="text" asp-for="LastNames" class="form-control" required />
+                    <span asp-validation-for="LastNames" class="text-danger"></span>
+                </div>
+
+                <!-- Correo -->
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-bold">Correo</label>
+                    <input type="email" asp-for="Email" class="form-control" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Teléfono -->
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label fw-bold">Teléfono</label>
+                    <input type="number" asp-for="Phone" class="form-control" required />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success px-4">Guardar cambios</button>
+                    <a asp-controller="Clients" asp-action="Index" class="btn btn-danger px-4">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label asp-for="LastNames" class="form-label">Apellidos</label>
-        <input required="required" type="text" class="form-control" asp-for="LastNames">
-        <span asp-validation-for="LastNames" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label">Correo</label>
-        <input required="required" type="email" class="form-control" asp-for="Email">
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Phone" class="form-label">Teléfono</label>
-        <input required="required" type="number" class="form-control" asp-for="Phone">
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-outline-success">
-        Guardar cambios
-    </button>
-</form>
+</div>
+
 
 

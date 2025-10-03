@@ -1,29 +1,53 @@
 @model Restaurant_Management.Models.Order
 
-<form asp-controller="Orders" asp-action="Edit" method="post">
-    <input asp-for="Id" hidden="hidden">
-    <div class="mb-3">
-        <label asp-for="OrderNumber" class="form-label">Número de Orden</label>
-        <input required="required" type="text" class="form-control" asp-for="OrderNumber">
+<div class="container my-5">
+    <h2 class="text-center mb-4 fw-bold text-primary">Editar Pedido</h2>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-controller="Orders" asp-action="Edit" method="post" class="needs-validation" novalidate>
+                <input asp-for="Id" hidden />
+
+                <!-- Número de orden -->
+                <div class="mb-3">
+                    <label asp-for="OrderNumber" class="form-label fw-bold">Número de Orden</label>
+                    <input type="text" asp-for="OrderNumber" class="form-control" required />
+                    <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Fecha -->
+                <div class="mb-3">
+                    <label asp-for="Date" class="form-label fw-bold">Fecha</label>
+                    <input type="date" asp-for="Date" class="form-control" required />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <!-- Estado del pedido -->
+                <div class="mb-3">
+                    <label asp-for="State" class="form-label fw-bold">Estado del pedido</label>
+                    <select asp-for="State" class="form-select" required>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Servido">Servido</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+
+                <!-- Cliente relacionado -->
+                <div class="mb-3">
+                    <label asp-for="fk_ClientID" class="form-label fw-bold">Cliente relacionado</label>
+                    <select asp-for="fk_ClientID" class="form-select" asp-items="@(new SelectList(ViewBag.Clients, "Id", "Name"))" required>
+                        <option value="">-- Seleccione un cliente --</option>
+                    </select>
+                    <span asp-validation-for="fk_ClientID" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success px-4">Guardar cambios</button>
+                    <a asp-controller="Orders" asp-action="Index" class="btn btn-danger px-4">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label asp-for="Date" class="form-label">Fecha</label>
-        <input required="required" type="date" class="form-control" asp-for="Date">
-    </div>
-    <div class="mb-3">
-        <label asp-for="State" class="form-label">Estado del pedido</label>
-        <select asp-for="State" class="form-control">
-            <option value="Pendiente">Pendiente</option>
-            <option value="Servido">Servido</option>
-            <option value="Cancelado">Cancelado</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label asp-for="fk_ClientID" class="form-label">Cliente relacionado</label>
-        <select asp-for="fk_ClientID" class="form-select" asp-items="@(new SelectList(ViewBag.Clients, "Id", "Name"))">
-        </select>
-    </div>
-    <button type="submit" class="btn btn-outline-success">
-        Guardar cambios
-    </button>
-</form>
+</div>
